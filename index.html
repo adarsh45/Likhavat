@@ -11,6 +11,33 @@
     <script src="./js/infinite-canvas.js"></script>
 </head>
 <body>
+
+    <!-- Modal -->
+<div class="modal fade" id="startupModal" tabindex="-1" role="dialog" aria-labelledby="startupModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="startupModalLabel">Update catalog</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <ul>
+                <li><b>Unlimited</b> draggable board is added. Click and hold right click and then drag through the unlimited board
+                
+                </li>
+              <li><b>Download Board</b> feature is live now!</li>
+          </ul>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Understood</button>
+          <!--<button type="button" class="btn btn-primary">Save changes</button>-->
+        </div>
+      </div>
+    </div>
+  </div>
+
     <div id="page">
 
         <!--sidebar code here-->
@@ -21,14 +48,14 @@
 
             <ul class="text-left">
               <li id="header_nav">
-                <a href="https://adarsh45.github.io/blackboard/">
+                <a href="https://likhavat.netlify.app">
                     <h3 class="h1">Likhavat <i class="fas fa-paint-brush fa-sm"></i></h3>
                 </a>
                 <h6 class="h6">Virtual Board for Teaching</h6>
               </li>
               <li>
                 <form action="#" class="radio-form" id="radio-form">
-                  <h4 class="h3">Select board</h4>
+                  <h4 class="h4"><i class="fas fa-chalkboard-teacher"></i> Select board</h4>
                 <div class="radio">
                     <label class="h5"><input type="radio" name="optradio" value="#202020" checked/>Blackboard</label>
                 </div>
@@ -41,10 +68,16 @@
                 </form>
               </li>
               <li>
-                  <h3 class="h3">Insert shapes</h3>
+                  <h4 class="h4"><i class="fas fa-shapes"></i> Insert shapes</h4>
                   <ul class="h5 select-shapes">
-                      <li id="line">Straight Line</li>
+                      <li id="straight-line">Straight Line</li>
+                      <li id="slant-line" onclick="alert('Slant line feature not yet added')">Slant Line</li>
                   </ul>
+              </li>
+              <li>
+                  <a id="downloadAnchor" download="board.png">
+                    <h5 class="h5" id="download-btn"><i class="fas fa-download"></i> Download Board</h5>
+                  </a>
               </li>
               <a href="https://adarsh45.github.io" target="blank">
                 <h6 class="h6">Created with <i class="fas fa-heart"></i> by Adarsh Shete</h6>
@@ -77,7 +110,7 @@
                 <input type="button" id="clear_all_btn" class="btn" value="Clear"/>
             </div>
         </div>
-        
+
         <!--main canvas goes here-->
         <canvas id="canvas"></canvas>
     </div>

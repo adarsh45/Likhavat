@@ -8,6 +8,9 @@ let startX, startY, endX, endY;
 const eraseBtn = document.getElementById("erase_btn");
 const colorBtn = document.getElementsByClassName("round");
 const clearAllBtn = document.getElementById("clear_all_btn");
+const straightLine = document.getElementById('straight-line');
+const slantLine = document.getElementById('slant-line');
+const downloadBtn = document.getElementById('download-btn');
 
 let mColor = '#FFFFFF';
 let mThickness = 5;
@@ -34,9 +37,18 @@ for(let i=0; i<radioGroup.length; i++){
 }
 
 //onload : main event
-window.addEventListener("load", () => {
+function onLoad() {
     const canvas = document.querySelector("#canvas");
     const ctx = canvas.getContext("2d");
+
+    //launch modal
+$(document).ready( function(){
+    $('#startupModal').modal('show');
+} );
+    //changing active states of shapes child elements
+    $(document).on('click', '#sidebar ul li ul li', function(){
+        $(this).addClass('active').siblings().removeClass('active');
+    });
 
     //disable right click context menu
     document.addEventListener('contextmenu', (menu)=>{
@@ -46,6 +58,13 @@ window.addEventListener("load", () => {
     //resize canvas
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
+
+    //download btn function
+    downloadBtn.addEventListener('click', ()=>{
+        let downloadAnchor = document.getElementById('downloadAnchor');
+        let imgUrl = canvas.toDataURL('image/jpeg').replace("image/jpeg", "image/octet-stream");
+        downloadAnchor.setAttribute('href', imgUrl);
+    });
 
     //init infinite canvas
     var inf_ctx = infiniteCanvas.initialize(ctx);
@@ -62,8 +81,8 @@ window.addEventListener("load", () => {
         firstTimeLineDraw = true;
         inf_ctx.updateChunks();
         //removing styling of st line
-        lineDraw.style.backgroundColor = '#FFFFFF';
-        lineDraw.style.color = '#202020';
+        //straightLine.style.backgroundColor = '#FFFFFF';
+        //straightLine.style.color = '#202020';
     });
 
     eraseBtn.addEventListener("click", ()=> {
@@ -107,23 +126,22 @@ window.addEventListener("load", () => {
             canvas.style.cursor = "crosshair";
             //console.log("started to draw now");
             //removing styling of st line
-            lineDraw.style.backgroundColor = '#FFFFFF';
-            lineDraw.style.color = '#202020';
+            //straightLine.style.backgroundColor = '#FFFFFF';
+            //straightLine.style.color = '#202020';
         });
     }
 
     //drawing shapes
-    const lineDraw = document.getElementById('line');
     let stLineSelected = false;
-    lineDraw.addEventListener('click', ()=> {
+    straightLine.addEventListener('click', ()=> {
         if(!stLineSelected){
             //first time clicked
             stLineSelected = true;
 
             //styling
-        lineDraw.style.backgroundColor = '#202020';
-        lineDraw.style.color = '#FFFFFF';
-        lineDraw.style.borderRadius = '4px';
+            //straightLine.style.backgroundColor = '#202020';
+            //straightLine.style.color = '#FFFFFF';
+            //straightLine.style.borderRadius = '4px';
         
         //removing all event listeners
             canvas.removeEventListener("mousedown",startPainting);
@@ -133,7 +151,7 @@ window.addEventListener("load", () => {
             canvas.removeEventListener("mouseup", finishErasing);
             canvas.removeEventListener("mousemove", eraseBoard);
 
-            //adding draw shapes event listeners
+        //adding draw shapes event listeners
             canvas.addEventListener("mousedown",startDrawingLine);
             canvas.addEventListener("mouseup", stopDrawingLine);
     
@@ -144,9 +162,7 @@ window.addEventListener("load", () => {
             //removing draw shapes event listeners
             canvas.removeEventListener("mousedown",startDrawingLine);
             canvas.removeEventListener("mouseup", stopDrawingLine);
-            //removing styling of st line
-            lineDraw.style.backgroundColor = '#FFFFFF';
-            lineDraw.style.color = '#202020';
+            
         }
         
         //console.log("started to draw line now");
@@ -179,6 +195,7 @@ window.addEventListener("load", () => {
         }
         ctx.stroke();
         ctx.beginPath();
+        inf_ctx.updateChunks();
     }
 
     //drawing functions
@@ -245,15 +262,15 @@ window.addEventListener("load", () => {
         ctx.clearRect(e.clientX, e.clientY, 30, 30);
     }
 
-});
+};
 
-
-window.addEventListener("resize", ()=> {
+window.addEventListener('load', onLoad);
+/*window.addEventListener("resize", ()=> {
     console.log('resize triggered');
     //resize canvas
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
-});
+});*/
 
 function modSubtraction(num1, num2){
     let result;
