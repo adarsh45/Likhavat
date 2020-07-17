@@ -10,6 +10,13 @@ body{
     font-family: 'Itim', cursive;
 }
 
+.form-group > *{
+    margin: 4px 0;
+}
+.form-group >:first-child{
+    margin: 0px;
+}
+
 #page{
     position: relative;
 }

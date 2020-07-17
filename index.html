@@ -12,7 +12,7 @@
 </head>
 <body>
 
-    <!-- Modal -->
+    <!--Page onLoad Modal -->
 <div class="modal fade" id="startupModal" tabindex="-1" role="dialog" aria-labelledby="startupModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -24,15 +24,49 @@
         </div>
         <div class="modal-body">
           <ul>
-                <li><b>Unlimited</b> draggable board is added. Click and hold right click and then drag through the unlimited board
-                
-                </li>
+              <li><b>Unlimited</b> draggable board is added. Click and hold right click and then drag through the unlimited board</li>
               <li><b>Download Board</b> feature is live now!</li>
+              <li>Users can give <b>Suggestions</b> directly from here!</li>
           </ul>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-primary" data-dismiss="modal">Understood</button>
-          <!--<button type="button" class="btn btn-primary">Save changes</button>-->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--Suggestion form modal-->
+  <div class="modal fade" id="suggestionFormModal">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title"><i class="fas fa-envelope"></i> Suggestion Form</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form action="POST" id="suggestionForm" name="suggestion-form" data-netlify="true">
+            <div class="form-group">
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label for="inputName">Name</label>
+                  <input class="form-control" type="name" name="name" id="inputName" placeholder="Enter name">
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="inputEmail">Email</label>
+                  <input class="form-control" type="email" name="email" id="inputEmail" placeholder="Enter email">
+                </div>
+              </div>
+              <label for="inputEmail">School/College/Organization name</label>
+                  <input class="form-control" type="text" name="inputCollege" id="inputCollege" placeholder="Enter organization name">
+              <label for="inputSuggestion">Your Suggestions</label>
+              <textarea class="form-control" rows="4" name="inputSuggestion" id="inputSuggestion" placeholder="Enter your suggestions here..."></textarea>
+              <button type="submit" class="btn btn-primary" data-dismiss="modal">Submit</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+          </form>
         </div>
       </div>
     </div>
@@ -78,6 +112,9 @@
                   <a id="downloadAnchor" download="board.png">
                     <h5 class="h5" id="download-btn"><i class="fas fa-download"></i> Download Board</h5>
                   </a>
+              </li>
+              <li><a>
+                  <h5 class="h5" id="openSuggestionForm"><i class="fas fa-envelope"></i> Suggestions</h5></a>
               </li>
               <a href="https://adarsh45.github.io" target="blank">
                 <h6 class="h6">Created with <i class="fas fa-heart"></i> by Adarsh Shete</h6>

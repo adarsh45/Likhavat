@@ -41,10 +41,14 @@ function onLoad() {
     const canvas = document.querySelector("#canvas");
     const ctx = canvas.getContext("2d");
 
-    //launch modal
-$(document).ready( function(){
-    $('#startupModal').modal('show');
-} );
+    //launch modal onLoad page
+    $(document).ready( function(){
+        $('#startupModal').modal('show');
+    });
+    //launch suggestion form modal
+    $(document).on('click', '#openSuggestionForm', function(){
+        $('#suggestionFormModal').modal('show');
+    });
     //changing active states of shapes child elements
     $(document).on('click', '#sidebar ul li ul li', function(){
         $(this).addClass('active').siblings().removeClass('active');
@@ -80,9 +84,6 @@ $(document).ready( function(){
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         firstTimeLineDraw = true;
         inf_ctx.updateChunks();
-        //removing styling of st line
-        //straightLine.style.backgroundColor = '#FFFFFF';
-        //straightLine.style.color = '#202020';
     });
 
     eraseBtn.addEventListener("click", ()=> {
@@ -132,17 +133,7 @@ $(document).ready( function(){
     }
 
     //drawing shapes
-    let stLineSelected = false;
     straightLine.addEventListener('click', ()=> {
-        if(!stLineSelected){
-            //first time clicked
-            stLineSelected = true;
-
-            //styling
-            //straightLine.style.backgroundColor = '#202020';
-            //straightLine.style.color = '#FFFFFF';
-            //straightLine.style.borderRadius = '4px';
-        
         //removing all event listeners
             canvas.removeEventListener("mousedown",startPainting);
             canvas.removeEventListener("mouseup", stopPainting);
@@ -156,15 +147,6 @@ $(document).ready( function(){
             canvas.addEventListener("mouseup", stopDrawingLine);
     
         canvas.style.cursor = "pointer";
-        } else{
-            stLineSelected = false;
-
-            //removing draw shapes event listeners
-            canvas.removeEventListener("mousedown",startDrawingLine);
-            canvas.removeEventListener("mouseup", stopDrawingLine);
-            
-        }
-        
         //console.log("started to draw line now");
     });
 
@@ -265,12 +247,12 @@ $(document).ready( function(){
 };
 
 window.addEventListener('load', onLoad);
-/*window.addEventListener("resize", ()=> {
-    console.log('resize triggered');
+window.addEventListener("resize", ()=> {
     //resize canvas
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
-});*/
+    //console.log('resize triggered');
+});
 
 function modSubtraction(num1, num2){
     let result;
