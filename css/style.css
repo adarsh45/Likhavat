@@ -5,6 +5,9 @@ body{
     padding: 0;
     overflow: hidden;
 }
+.error-msg{
+    display: none;
+}
 
 .h1{
     font-family: 'Itim', cursive;
@@ -153,4 +156,15 @@ input[type=radio]{
 #canvas{
     cursor: crosshair;
     background-color: #202020;
+}
+
+/* media breakpoints for detecting mobile */
+@media (max-width: 640px){
+    #page{
+        display: none;
+    }
+    .error-msg{
+        display: block;
+        padding: 50px;
+    }
 }
