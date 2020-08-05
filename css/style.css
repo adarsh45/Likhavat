@@ -158,6 +158,13 @@ input[type=radio]{
     background-color: #202020;
 }
 
+/* Visit Counter styling */
+.visit-counter{
+    position: absolute;
+    bottom: 0;
+    right: 2px;
+}
+
 /* media breakpoints for detecting mobile */
 @media (max-width: 640px){
     #page{
